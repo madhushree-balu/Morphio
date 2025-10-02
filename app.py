@@ -1,6 +1,6 @@
 from pydub import AudioSegment
-sound1 = AudioSegment.from_file("/static/audio/sound1.dat", format="dat")
-sound2 = AudioSegment.from_file("/static/audio/sound1.dat", format="dat")
+sound1 = AudioSegment.from_file("static/audio/sound1.mp3", format="mp3")
+sound2 = AudioSegment.from_file("static/audio/sound2.mp3", format="mp3")
 
 
 # sound1 6 dB louder, then 3.5 dB quieter
@@ -9,6 +9,7 @@ quieter = sound1 - 3.5
 
 # sound1, with sound2 appended
 combined = sound1 + sound2
+combined.export("combined_2.mp3", format="mp3")
 
 # sound1 repeated 3 times
 repeated = sound1 * 3
@@ -24,23 +25,3 @@ end = sound1[-5000:]
 
 # split sound1 in 5-second slices
 slices = sound1[::5000]
-
-# Advanced usage, if you have raw audio data:
-
-
-with open("static/sound1.dat", "rb") as file:
-    binary_data = file.read()
-
-sound = AudioSegment(
-    # raw audio data (bytes)
-    data=binary_data,
-
-    # 2 byte (16 bit) samples
-    sample_width=2,
-
-    # 44.1 kHz frame rate
-    frame_rate=44100,
-
-    # stereo
-    channels=2
-)
