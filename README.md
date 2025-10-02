@@ -16,4 +16,3 @@ Any 2 Any - Converter and Utility Application
 - Trim Silence
 - Text to speech
 - Text extracter from image
-    
