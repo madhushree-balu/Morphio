@@ -1,12 +1,12 @@
 from pydub import AudioSegment
 import os
 
-def convert_audio(input_path, output_path, output_format):
+def convert_audio(input_path, output_format):
     audio = AudioSegment.from_file(input_path)
     audio.export(output_path, format=output_format)
     return output_path
 
-def merge_audios(audio_paths, output_path):
+def merge_audios(audio_paths):
     combined = AudioSegment.empty()
     for path in audio_paths:
         audio = AudioSegment.from_file(path)
