@@ -1,27 +1,36 @@
 from pydub import AudioSegment
-sound1 = AudioSegment.from_file("static/audio/sound1.mp3", format="mp3")
-sound2 = AudioSegment.from_file("static/audio/sound2.mp3", format="mp3")
+import os
+
+def convert_audio(input_path, output_path, output_format):
+    audio = AudioSegment.from_file(input_path)
+    audio.export(output_path, format=output_format)
+    return output_path
+
+def merge_audios(audio_paths, output_path):
+    combined = AudioSegment.empty()
+    for path in audio_paths:
+        audio = AudioSegment.from_file(path)
+        combined += audio
+    combined.export(output_path, format="mp3")
+    return output_path
+
+def trim_audio(input_path, output_path, start_ms, end_ms):
+    audio = AudioSegment.from_file(input_path)
+    trimmed = audio[start_ms:end_ms]
+    trimmed.export(output_path, format="mp3")
+    return output_path
+
+def cut_audio(input_path, output_path, cut_start_ms, cut_end_ms):
+    audio = AudioSegment.from_file(input_path)
+    cut_audio = audio[:cut_start_ms] + audio[cut_end_ms:]
+    cut_audio.export(output_path, format="mp3")
+    return output_path
+
+def reverse_audio(input_path, output_path):
+    audio = AudioSegment.from_file(input_path)
+    reversed_audio = audio.reverse()
+    reversed_audio.export(output_path, format="mp3")
+    return output_path
 
 
-# sound1 6 dB louder, then 3.5 dB quieter
-louder = sound1 + 6
-quieter = sound1 - 3.5
 
-# sound1, with sound2 appended
-combined = sound1 + sound2
-combined.export("combined_2.mp3", format="mp3")
-
-# sound1 repeated 3 times
-repeated = sound1 * 3
-
-# duration
-duration_in_milliseconds = len(sound1)
-
-# first 5 seconds of sound1
-beginning = sound1[:5000]
-
-# last 5 seconds of sound1
-end = sound1[-5000:]
-
-# split sound1 in 5-second slices
-slices = sound1[::5000]
