@@ -1,3 +1,5 @@
 pillow
 pydub
 pyttsx3
+flask
+speechrecognition
