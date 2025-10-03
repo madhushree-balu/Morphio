@@ -1,7 +1,19 @@
 from pydub import AudioSegment
 import os
+#how to hash the input file to create a unique temp file name
+import hashlib
+from hashlib import sha256
+from datetime import datetime
+
+def hash_file(file_path):
+    now = str(datetime.now())
+    encoded = sha256((now + file_path).encode('utf-8')).hexdigest()
+    return encoded
+
+
 
 def convert_audio(input_path, output_format):
+    output_path = input_path.split('.')[-1]
     audio = AudioSegment.from_file(input_path)
     audio.export(output_path, format=output_format)
     return output_path
