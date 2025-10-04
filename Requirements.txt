@@ -3,3 +3,4 @@ pydub
 pyttsx3
 flask
 speechrecognition
+pytesseract 
