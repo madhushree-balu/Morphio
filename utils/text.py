@@ -38,7 +38,3 @@ def text_to_speech(text):
     return output_path
 
 
-text_to_speech("Hello, this is a test.")
-
-
-audio_to_text("static/audio/output/b6c858be35ce35110112b46855e0bde008ebea537ab4cd795bf78deec9ecc325.mp3")    
